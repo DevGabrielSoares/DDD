@@ -16,7 +16,7 @@ interface QuestionProps {
 
 export class Question extends Entity<QuestionProps> {
   get title() {
-    return this.props.content
+    return this.props.title
   }
 
   get content() {
@@ -24,23 +24,23 @@ export class Question extends Entity<QuestionProps> {
   }
 
   get slug() {
-    return this.props.content
+    return this.props.slug
   }
 
   get createdAt() {
-    return this.props.content
+    return this.props.createdAt
   }
 
   get updatedAt() {
-    return this.props.content
+    return this.props.updatedAt
   }
 
   get bestAnswerId() {
-    return this.props.content
+    return this.props.bestAnswerId
   }
 
   get authorId() {
-    return this.props.content
+    return this.props.authorId
   }
 
   get isNew(): boolean {
@@ -67,7 +67,7 @@ export class Question extends Entity<QuestionProps> {
     this.touch()
   }
 
-  set bestAnswerId(bestAnswerId: string | undefined) {
+  set bestAnswerId(bestAnswerId: UniqueEntityID | undefined) {
     this.props.bestAnswerId = bestAnswerId
   }
 
