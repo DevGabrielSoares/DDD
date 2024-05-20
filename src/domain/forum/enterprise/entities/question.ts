@@ -4,7 +4,7 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
 import dayjs from 'dayjs'
 
-interface QuestionProps {
+export interface QuestionProps {
   title: string
   content: string
   slug: Slug
@@ -58,7 +58,6 @@ export class Question extends Entity<QuestionProps> {
   set title(title: string) {
     this.props.title = title
     this.props.slug = Slug.createFromText(title)
-
     this.touch()
   }
 
@@ -69,6 +68,7 @@ export class Question extends Entity<QuestionProps> {
 
   set bestAnswerId(bestAnswerId: UniqueEntityID | undefined) {
     this.props.bestAnswerId = bestAnswerId
+    this.touch()
   }
 
   static create(
@@ -79,7 +79,7 @@ export class Question extends Entity<QuestionProps> {
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.title),
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
